@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>StayAlive | Survivors</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link </head>
+    </head>
 
     <body data-spy="scroll" data-target=".navbar" onload="getProducts();">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="login.html">
+                <a class="navbar-brand" href="home.html">
                     <img src="img/logo.png">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -21,24 +21,16 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#welcome">Market</a>
+                            <a class="nav-link" href="market.html">Market</a>
                         </li>
-                        <!-- <li class="nav-item">
-                  <a class="nav-link" href="#">Community</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Map</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact us</a>
-                </li> -->
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-smile fa-2x"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Login</a>
-                                <a class="dropdown-item" href="#">Register</a>
+                                <a class="dropdown-item" href="cart.html">Transactions</a>
+                                <a class="dropdown-item" onclick="logout();">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -50,7 +42,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="home.html">Home</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Purchase</li>
             </ol>
