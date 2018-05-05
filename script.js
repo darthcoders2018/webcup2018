@@ -42,7 +42,18 @@ function register() {
         .createUserWithEmailAndPassword(email, password)
         .then(function (response) {
             console.log('response SignUp: ', response);
+
+            if (typeof (Storage) !== "undefined") {
+                var objToken = {
+                    uid: response.uid,
+                    email: response.email
+                }
+                localStorage.setItem("uid", response.uid);
+                localStorage.setItem("email", response.email);
+            } 
+            
             createProfile(response.uid, email);
+            window.location.href = 'home.html';
         })
         .catch(function (error) {
             document.getElementById('error_display').innerHTML = error;
@@ -618,6 +629,7 @@ function createProfile(userid, email) {
         userid: userid,
         neozone: selectedneo,
         contactno: tel,
+    }).then(function (response) {
     });
 }
 
