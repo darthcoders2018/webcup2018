@@ -277,7 +277,17 @@ figure {
     color: red;
 }
 
-.form-frame {
+.form-frame__reg {
+    position: absolute;
+    width: 500px;
+    margin: 0 auto;
+    background: white;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-frame__log {
     position: absolute;
     width: 500px;
     margin: 0 auto;
@@ -292,11 +302,18 @@ figure {
 }
 
 @media (max-width: 575.98px) {
-    .form-frame {
+    .form-frame__log {
         width: 100%;
     }
+    .form-frame__reg {
+        width: 100%;
+    }
+
 }
-.form-frame .form {
+.form-frame__log .form {
+    padding: 25px;
+}
+.form-frame__reg .form {
     padding: 25px;
 }
 
@@ -308,7 +325,10 @@ figure {
 .form-bg {
     position: relative;
 }
-
+.nav-special{
+    z-index: 9999;
+    background-color: white
+}
 /* .goog-logo-link {
     display:none !important;
  } 
