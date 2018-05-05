@@ -6,9 +6,9 @@ html, body {
     color: #222;
 }
 
-.navbar {
+/* .navbar {
     padding: .8rem;
-}
+} */
 
 .navbar-nav li {
     padding-right: 20px;
@@ -19,7 +19,7 @@ html, body {
 }
 
 .carousel-inner {
-    height: 47em;
+    height: 36em;
 }
 
 .carousel-inner img {
@@ -192,6 +192,10 @@ hr.light-100 {
 }
 
 @media (max-width: 576px) {
+
+    .carousel-inner {
+        height: 17em;
+    }
     .carousel-caption {
         top: 40%;
     }
@@ -305,13 +309,14 @@ figure {
     position: relative;
 }
 
-.goog-logo-link {
+/* .goog-logo-link {
     display:none !important;
  } 
  
  .goog-te-gadget{
     color: transparent !important;
- }
+ } */
+
 
 /*
 Extra small (xs) devices (portrait phones, less than 576px)

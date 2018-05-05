@@ -5,13 +5,31 @@ function login() {
     firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(function(response) {
-            console.log(response.email);
+        .then(function (response) {
+            console.log(response);
+
+            if (typeof (Storage) !== "undefined") {
+                var objToken = {
+                    uid: response.uid,
+                    email: response.email
+                }
+                localStorage.setItem("uid", response.uid);
+                localStorage.setItem("email", response.email);
+            } 
+            window.location.href = 'home.html';
         })
         .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignIn: ' + error);
         });
+}
+
+function logout() {
+    if (typeof (Storage) !== "undefined") {
+        localStorage.removeItem("uid");
+        localStorage.removeItem("email");
+    }
+    window.location.href = 'index.html';
 }
 
 function register() {
@@ -24,7 +42,18 @@ function register() {
         .createUserWithEmailAndPassword(email, password)
         .then(function(response) {
             console.log('response SignUp: ', response);
+
+            if (typeof (Storage) !== "undefined") {
+                var objToken = {
+                    uid: response.uid,
+                    email: response.email
+                }
+                localStorage.setItem("uid", response.uid);
+                localStorage.setItem("email", response.email);
+            } 
+            
             createProfile(response.uid, email);
+            window.location.href = 'home.html';
         })
         .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
@@ -600,6 +629,7 @@ function createProfile(userid, email) {
         userid: userid,
         neozone: selectedneo,
         contactno: tel,
+    }).then(function (response) {
     });
 }
 
@@ -673,4 +703,28 @@ function getProducts() {
        
     });
 
+}
+
+
+var d = new Date();
+var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
+
+var asd = function () {
+    $('#google_translate_element').find('select').addClass('form-control');
+    console.log("trigerred")
+}
+
+var remove = function () {
+    $(".goog-logo-link").empty();
+    $('.goog-te-gadget').html($('.goog-te-gadget').children());
+    console.log('helo')
+}
+
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en'
+    }, 'google_translate_element');
+
+    asd();
+    remove();
 }
