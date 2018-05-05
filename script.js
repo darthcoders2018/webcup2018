@@ -1,31 +1,34 @@
 function login() {
-    const email = document.getElementById("signin-email").value,
-        password = document.getElementById("signin-password").value;
+    const email = document.getElementById('signin-email').value,
+        password = document.getElementById('signin-password').value;
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(function(response) {
+    firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(function (response) {
             console.log(response.email);
         })
-        .catch(function(error) {
-            document.getElementById("error_display").innerHTML = error;
+        .catch(function (error) {
+            document.getElementById('error_display').innerHTML = error;
             console.log('error SignIn: ' + error);
         });
 }
 
 function register() {
-    document.getElementById("error_display").innerHTML = " ";
-    const email = document.getElementById("register-email").value,
-        password = document.getElementById("register-password1").value;
+    document.getElementById('error_display').innerHTML = ' ';
+    const email = document.getElementById('register-email').value,
+        password = document.getElementById('register-password1').value;
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(function(response) {
-
-            console.log("response SignUp: ", response);
+    firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(function (response) {
+            console.log('response SignUp: ', response);
             createProfile(response.uid, email);
         })
-        .catch(function(error) {
-            document.getElementById("error_display").innerHTML = error;
-            console.log("error SignUp: ", error)
+        .catch(function (error) {
+            document.getElementById('error_display').innerHTML = error;
+            console.log('error SignUp: ', error);
         });
 }
 
@@ -34,13 +37,16 @@ var map, heatmap;
 function initMap() {
     map = new google.maps.Map(document.getElementById('heat-map'), {
         zoom: 13,
-        center: { lat: 37.775, lng: -122.434 },
-        mapTypeId: 'satellite'
+        center: {
+            lat: 37.775,
+            lng: -122.434
+        },
+        mapTypeId: 'satellite',
     });
 
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: getPoints(),
-        map: map
+        map: map,
     });
 }
 
@@ -63,8 +69,8 @@ function changeGradient() {
         'rgba(63, 0, 91, 1)',
         'rgba(127, 0, 63, 1)',
         'rgba(191, 0, 31, 1)',
-        'rgba(255, 0, 0, 1)'
-    ]
+        'rgba(255, 0, 0, 1)',
+    ];
     heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
 }
 
@@ -583,21 +589,18 @@ function getPoints() {
 }
 
 function createProfile(userid, email) {
-
     var database = firebase.database();
-    const username = document.getElementById("register-username").value,
-        tel = document.getElementById("register-tel").value,
-        selection = document.getElementById("register-neo");
+    const username = document.getElementById('register-username').value,
+        tel = document.getElementById('register-tel').value,
+        selection = document.getElementById('register-neo');
     var selectedneo = selection.options[selection.selectedIndex].value;
-
 
     firebase.database().ref('users/' + userid + '/profile').set({
         email: email,
         userid: userid,
         neozone: selectedneo,
-        contactno: tel
+        contactno: tel,
     });
-
 }
 
 function insertproduct() {
@@ -607,15 +610,43 @@ function insertproduct() {
 
     var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
 
-
     firebase.database().ref('products/' + id).set({
         id: id,
-        prodname: "Sea Weade",
-        proddesc: "xxsdsw",
-        prodquantity: "5x",
-        barterer: "xxxxxx",
-        prodimage: "rrrr"
+        prodname: 'Sea Weade',
+        prod: 'xxsdsw',
+        prodquantity: '5x',
+        barterer: 'xxxxxx',
+        prodimage: 'rrrr',
     });
+}
+
+function uploadImage() {
+    var uploadFile = document.getElementById('img-upload');
+    if (uploadFile.files && uploadFile.files.length > 0) {
+
+        console.log("uploadFile.files[0]", uploadFile.files[0].name);
+        var fReader = new FileReader();
+        fReader.readAsDataURL(uploadFile.files[0]);
+        fReader.onloadend = function (event) {
+            var img = document.getElementById('imgResult');
+            img.src = event.target.result;
+            var url = img.src.replace('data:image/jpeg;base64', '');
+
+            /* asdsaddsa */
+            /* firebase.database().ref().putString(url, 'base64').then(function(snapshot) {
+              console.log ('Uploaded a base64 string!', snapshot);
+            }); */
+            /* asasd */
+            firebase.database().ref('images/' + uploadFile.files[0].name.split(".")[0] + new Date().getMilliseconds()).put(uploadFile.files[0]).then(function (response) {
+                console.log(response);
+            }).catch(function (err) {
+                console.log(err);
+            });
+
+            console.log('event', event.target);
+        };
+    }
+    console.log('uploadFile.files', uploadFile.files);
 }
 
 
