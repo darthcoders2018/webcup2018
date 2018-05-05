@@ -6,9 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Access my account</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="style.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-functions.js"></script>
 </head>
 
 <body>
@@ -16,8 +23,8 @@
         <div class="container-fluid">
             <div class="form-bg"></div>
             <div class="form-frame">
-                <form class="form-signin">
-                    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+               
+                   <!-- <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
                     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <div class="form-group">
                         <label for="">Username</label>
@@ -27,7 +34,7 @@
                                     <i class="fas fa-user"></i>
                                 </span>
                             </div>
-                            <input type="text" id="" placeholder="Username" class="form-control" />
+                            <input type="text" id="signin-email" placeholder="Username" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,25 +45,25 @@
                                     <i class="fas fa-key"></i>
                                 </span>
                             </div>
-                            <input type="Password" id="" placeholder="Password" class="form-control" />
+                            <input type="Password" id="signin-password" placeholder="Password" class="form-control" />
                         </div>
-
                     </div>
                     <div class="form-btn">
-                        <button class="btn btn-sm btn-primary btn-block" type="submit">
+                        <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="login();">
                             <i class="fa fa-check-circle fa-2x"></i>
                         </button>
                     </div>
-                </form>
+                   <center> <p color="white" id="error_display">aaa</p></center>
+              
             </div>
-
         </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="firebase.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
