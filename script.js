@@ -599,3 +599,22 @@ function createProfile(userid,email) {
         });
     
 }
+
+function insertproduct()
+{
+	  var database = firebase.database();
+   var d = new Date();
+var n = d.getTime();
+
+var id=d.getMilliseconds()+d.getDate();
+
+   
+        firebase.database().ref('products/' + id+'/profile').set({
+            id: id,
+            prodname: "Sea turtle",
+            prod:"xxsdsw",
+            prodquantity:5,
+            barterer:"xxxxxx"
+            prodimage:"rrrr"
+        });
+}
