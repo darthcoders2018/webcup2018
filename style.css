@@ -266,10 +266,13 @@ figure {
     background: blue;
 }
 
+/*--- sign in form --*/
+
 .size {
     width: 50px;
     color: red;
 }
+
 
 .form-frame {
     position: absolute;
@@ -280,25 +283,23 @@ figure {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
+@media (max-width: 575.98px) {
+    .form-frame {
+        width:100%;
+    }
+}
 .form-frame form {
     padding: 25px;
 }
+.form-btn {
+    display: flex;
+    justify-content: center;
+  }
 
 .form-bg {
     position: relative;
 }
 
-.social {
-    width: 500px;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.form-btn {
-    display: flex;
-    justify-content: center;
-}
 
 /*
 Extra small (xs) devices (portrait phones, less than 576px)
