@@ -6,12 +6,30 @@ function login() {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(function (response) {
-            console.log(response.email);
+            console.log(response);
+
+            if (typeof (Storage) !== "undefined") {
+                var objToken = {
+                    uid: response.uid,
+                    email: response.email
+                }
+                localStorage.setItem("uid", response.uid);
+                localStorage.setItem("email", response.email);
+            } 
+            window.location.href = 'home.html';
         })
         .catch(function (error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignIn: ' + error);
         });
+}
+
+function logout() {
+    if (typeof (Storage) !== "undefined") {
+        localStorage.removeItem("uid");
+        localStorage.removeItem("email");
+    }
+    window.location.href = 'index.html';
 }
 
 function register() {
