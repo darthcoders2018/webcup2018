@@ -14,12 +14,14 @@ function login() {
 
 function register() {
     document.getElementById("error_display").innerHTML = " ";
-    const email = document.getElementById("signin-email").value,
-        password = document.getElementById("signin-password").value;
+    const email = document.getElementById("register-email").value,
+        password = document.getElementById("register-password1").value;
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(function(response) {
+
             console.log("response SignUp: ", response);
+           createProfile(response.uid,email);
         })
         .catch(function(error) {
             document.getElementById("error_display").innerHTML = error;
@@ -578,4 +580,41 @@ function getPoints() {
     new google.maps.LatLng(37.752986, -122.403112),
     new google.maps.LatLng(37.751266, -122.403355)
   ];
+}
+
+function createProfile(userid,email) {
+   
+    var database = firebase.database();
+    const username = document.getElementById("register-username").value,
+        tel = document.getElementById("register-tel").value,
+        selection = document.getElementById("register-neo");
+    var selectedneo = selection.options[selection.selectedIndex].value;
+
+   
+        firebase.database().ref('users/' + userid+'/profile').set({
+            email: email,
+            userid: userid,
+            neozone:selectedneo,
+            contactno:tel
+        });
+    
+}
+
+function insertproduct()
+{
+	  var database = firebase.database();
+   var d = new Date();
+var n = d.getTime();
+
+var id=d.getMilliseconds()+d.getSeconds()+d.getHours();
+
+   
+        firebase.database().ref('products/' + id).set({
+            id: id,
+            prodname: "Sea Weade",
+            prod:"xxsdsw",
+            prodquantity:"5x",
+            barterer:"xxxxxx",
+            prodimage:"rrrr"
+        });
 }
