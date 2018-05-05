@@ -288,7 +288,7 @@ figure {
         width:100%;
     }
 }
-.form-frame form {
+.form-frame .form {
     padding: 25px;
 }
 .form-btn {
