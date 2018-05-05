@@ -273,7 +273,6 @@ figure {
     color: red;
 }
 
-
 .form-frame {
     position: absolute;
     width: 500px;
@@ -283,23 +282,28 @@ figure {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#heat-map {
+    height: 60vh;
+}
+
 @media (max-width: 575.98px) {
     .form-frame {
-        width:100%;
+        width: 100%;
     }
 }
 .form-frame .form {
     padding: 25px;
 }
+
 .form-btn {
     display: flex;
     justify-content: center;
-  }
+}
 
 .form-bg {
     position: relative;
 }
-
 
 /*
 Extra small (xs) devices (portrait phones, less than 576px)
