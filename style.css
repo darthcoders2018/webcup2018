@@ -284,7 +284,7 @@ figure {
     background: white;
     top: 70%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
 }
 
 .form-frame__log {
