@@ -15,7 +15,7 @@ function login() {
                 }
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
-            } 
+            }
             window.location.href = 'home.html';
         })
         .catch(function(error) {
@@ -50,8 +50,8 @@ function register() {
                 }
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
-            } 
-            
+            }
+
             createProfile(response.uid, email);
             window.location.href = 'home.html';
         })
@@ -629,8 +629,7 @@ function createProfile(userid, email) {
         userid: userid,
         neozone: selectedneo,
         contactno: tel,
-    }).then(function (response) {
-    });
+    }).then(function (response) {});
 }
 
 function insertproduct() {
@@ -683,6 +682,19 @@ function uploadImage() {
         };
     }
     console.log('uploadFile.files', uploadFile.files);
+}
+
+function checkSession() {
+
+    if (typeof (Storage) !== "undefined") {
+
+        var userID = localStorage.getItem("uid"),
+            email = localStorage.getItem("email");
+        if (!userID && !email) {
+            window.location.href = 'login.html';
+        }
+    }
+
 }
 
 

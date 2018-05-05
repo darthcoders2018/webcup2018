@@ -10,42 +10,30 @@
         <link >
 </head>
 
-<body data-spy="scroll" data-target=".navbar">
+<body data-spy="scroll" data-target=".navbar" onload="checkSession();">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="login.html">
-              <img src="img/logo.png">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-              <span class="navbar-toggler-icon"></span>
-      
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#welcome">Market</a>
-                  <div id="market">
-                    
-                  </div>
-                </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="#">Community</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Map</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact us</a>
-                </li> -->
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="login.html">
+        <img src="img/logo.png">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="market.html">Market</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">connnect
               <i class="far fa-smile"></i>
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" onclick="logout();">Logout</a>
               <a class="dropdown-item" href="#">Register</a>
+              <a class="dropdown-item" onclick="logout();">Logout</a>
             </div>
           </li>
         </ul>
