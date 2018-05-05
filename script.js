@@ -606,15 +606,15 @@ function insertproduct()
    var d = new Date();
 var n = d.getTime();
 
-var id=d.getMilliseconds()+d.getDate();
+var id=d.getMilliseconds()+d.getSeconds()+d.getHours();
 
    
-        firebase.database().ref('products/' + id+'/profile').set({
+        firebase.database().ref('products/' + id).set({
             id: id,
-            prodname: "Sea turtle",
+            prodname: "Sea Weade",
             prod:"xxsdsw",
-            prodquantity:5,
-            barterer:"xxxxxx"
+            prodquantity:"5x",
+            barterer:"xxxxxx",
             prodimage:"rrrr"
         });
 }
