@@ -12,7 +12,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link </head>
 
-    <body data-spy="scroll" data-target=".navbar">
+    <body data-spy="scroll" data-target=".navbar" onload="getProducts();">
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
@@ -65,9 +65,10 @@
             </ol>
         </nav>
 
-        <div class="container">
+        <div class="container" id="cont">
             <!--table-->
-            <table class="table">
+            
+            <!-- <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Seller</th>
@@ -75,8 +76,8 @@
                         <th scope="col">Desc</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody> -->
+                    <!-- <tr>
                         <th scope="row"> <a href="#"data-toggle="modal" data-target="#profileModal">Mark</a></th>
                         <td>fish</td>
                         <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -95,10 +96,11 @@
                                 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                                 sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
     
-                        </tr>
+                        </tr> -->
 
-                </tbody>
-            </table>
+              <!--   </tbody>
+            </table> -->
+        
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Shop
@@ -204,7 +206,20 @@
                 </div>
             </div>
         </footer>
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-functions.js"></script>
+        <script src="firebase.js"></script>
+        <script src="script.js"></script>
 
     </body>
 

@@ -5,10 +5,10 @@ function login() {
     firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(function (response) {
+        .then(function(response) {
             console.log(response.email);
         })
-        .catch(function (error) {
+        .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignIn: ' + error);
         });
@@ -22,11 +22,11 @@ function register() {
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(function (response) {
+        .then(function(response) {
             console.log('response SignUp: ', response);
             createProfile(response.uid, email);
         })
-        .catch(function (error) {
+        .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignUp: ', error);
         });
@@ -623,23 +623,29 @@ function insertproduct() {
 function uploadImage() {
     var uploadFile = document.getElementById('img-upload');
     if (uploadFile.files && uploadFile.files.length > 0) {
-
+        var database = firebase.database();
+        var d = new Date();
+        var n = d.getTime();
+        var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
         console.log("uploadFile.files[0]", uploadFile.files[0].name);
         var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
-        fReader.onloadend = function (event) {
+        fReader.onloadend = function(event) {
             var img = document.getElementById('imgResult');
             img.src = event.target.result;
             var url = img.src.replace('data:image/jpeg;base64', '');
 
-            /* asdsaddsa */
-            /* firebase.database().ref().putString(url, 'base64').then(function(snapshot) {
-              console.log ('Uploaded a base64 string!', snapshot);
-            }); */
-            /* asasd */
-            firebase.database().ref('images/' + uploadFile.files[0].name.split(".")[0] + new Date().getMilliseconds()).put(uploadFile.files[0]).then(function (response) {
+
+            firebase.database().ref('products/' + id).set({
+                id: id,
+                prodname: 'turtle',
+                proddesc: 'test',
+                prodquantity: 5,
+                barterer: 'sam martin',
+                prodimage: url
+            }).then(function(response) {
                 console.log(response);
-            }).catch(function (err) {
+            }).catch(function(err) {
                 console.log(err);
             });
 
@@ -651,29 +657,20 @@ function uploadImage() {
 
 
 function getProducts() {
-    var displayString = "";
+    
+    var displayTable="<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
     var database = firebase.database();
     var productRef = firebase.database().ref('products/');
     productRef.on('value', function(snapshot) {
 
         for (var level1 in snapshot.val()) {
             var dto = snapshot.val()[level1];
-            displayString += "Name:" + dto.prodname + "</br>Barterer" + dto.barterer + "</br>" + dto.id + "</br> desc" + dto.prod + "</br>" + "prod qty" + dto.prodquantity + "</br>"
+            displayTable+="<tbody><tr><td><img src='"+dto.prodimage+"' height='100' width='100'/></td><td>"+dto.prodname+"</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>"+dto.barterer+"</a></td><td>"+dto.id+"</td><td>"+dto.proddesc+"</td><td>"+dto.prodquantity+"</td>"+"</tr></tbody>";
+           
         }
-        document.getElementById('market').innerHTML = displayString;
+        displayTable+="</table>";
+       document.getElementById('cont').innerHTML=displayTable;
+       
     });
 
-}
-
-function getImages() {
-    var database = firebase.database();
-    var x = firebase.database().ref('images/icon752');
-
-    x.on('value', function(snapshot) {
-        console.log(snapshot.val());
-        var str = "<img src='" + snapshot.val().base64 + "'>";
-        console.log(str);
-        document.getElementById("market").innerHTML = str;
-
-    });
 }
