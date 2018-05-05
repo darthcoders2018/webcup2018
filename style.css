@@ -18,9 +18,9 @@ html, body {
     font-size: 1.1em !important;
 }
 
-.carousel-inner {
-    height: 47em;
-}
+/* .carousel-inner {
+    height: 47em;47em;
+} */
 
 .carousel-inner img {
     width: 100%;
@@ -305,13 +305,14 @@ figure {
     position: relative;
 }
 
-.goog-logo-link {
+/* .goog-logo-link {
     display:none !important;
  } 
  
  .goog-te-gadget{
     color: transparent !important;
- }
+ } */
+
 
 /*
 Extra small (xs) devices (portrait phones, less than 576px)

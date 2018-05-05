@@ -678,3 +678,26 @@ function uploadImage() {
     }
     console.log('uploadFile.files', uploadFile.files);
 }
+
+var d = new Date();
+var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
+
+var asd = function () {
+    $('#google_translate_element').find('select').addClass('form-control');
+    console.log("trigerred")
+}
+
+var remove = function () {
+    $(".goog-logo-link").empty();
+    $('.goog-te-gadget').html($('.goog-te-gadget').children());
+    console.log('helo')
+}
+
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en'
+    }, 'google_translate_element');
+
+    asd();
+    remove();
+}
