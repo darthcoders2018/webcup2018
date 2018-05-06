@@ -741,7 +741,7 @@ function getProducts() {
             var dto = snapshot.val()[level1];
 
             if (dto.status === "open" && dto.barterid != userID)
-                displayTable += "<tbody><tr><td><img src='" + dto.prodimage + "' height='100' width='100'/></td><td>" + dto.prodname + "</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>" + dto.barterer + "</a></td><td>" + dto.id + "</td><td>" + dto.proddesc + "</td><td>" + dto.prodquantity + "</td><td>" +
+                displayTable += "<tbody><tr><td><img class='img-fluid' src='" + dto.prodimage + "' height='100' width='100'/></td><td>" + dto.prodname + "</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>" + dto.barterer + "</a></td><td>" + dto.id + "</td><td>" + dto.proddesc + "</td><td>" + dto.prodquantity + "</td><td>" +
                 "<button class='btn btn-sm btn-primary btn-block' data-toggle='modal' data-target='#barterModal' onclick='barterItem(" + dto.id + ");'>Barter</button>" + "</td></tr></tbody>";
         }
         displayTable += "</table>";

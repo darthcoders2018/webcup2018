@@ -243,7 +243,7 @@ figure {
 }
 
 #fixed {
-    background-image: url('img/mac.png');
+    background-image: url('img/fishing.jpg');
     position: fixed;
     display: block;
     top: 0;
@@ -264,10 +264,12 @@ figure {
 }
 
 .full-body-cover {
-    border: 0;
-    width: 100vw;
-    height: 100vh;
-    background: blue;
+    position:relative;
+	height:100vh;
+	 background: url(https://images.pexels.com/photos/256150/pexels-photo-256150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-repeat: repeat-x;
+    background-size: cover;
+
 }
 
 /*--- sign in form --*/
@@ -281,7 +283,7 @@ figure {
     position: absolute;
     width: 500px;
     margin: 0 auto;
-    background: white;
+    background: rgba(255,255,255,0.3);
     top: 70%;
     left: 50%;
     transform: translate(-50%, -40%);
