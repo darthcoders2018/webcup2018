@@ -682,13 +682,14 @@ function createProduct() {
 
     var dt = new Date();
     var id = dt.getMilliseconds() + dt.getSeconds() + dt.getHours();
-
+    var userID = localStorage.getItem("uid");
     firebase.database().ref('products/' + id).set({
         id: id,
         prodname: name,
         proddesc: desc,
         prodquantity: qty,
-        barterer: 'sam martin'
+        barterid: userID,
+        status: 'open'
     }).then(function (response) {
         $('#addItemModal').modal('hide');
     }).catch(function (err) {
@@ -709,22 +710,41 @@ function checkSession() {
 
 }
 
+function barterItem(itemID) {
+    getUserProducts();
+
+    console.log(itemID);
+
+    var database=firebase.database();
+    var prod=database.ref('products/'+itemID);
+    prod.on('value',function(snapshot)
+{
+document.getElementById('pid').innerHTML=snapshot.val().id;
+document.getElementById('pname').innerHTML=snapshot.val().prodname;
+document.getElementById('pqty').innerHTML=snapshot.val().prodquantity;
+
+});
+}
 
 function getProducts() {
 
     var displayTable = "<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
     var database = firebase.database();
     var productRef = firebase.database().ref('products/');
+    var userID = localStorage.getItem("uid");
+
     productRef.on('value', function (snapshot) {
 
         for (var level1 in snapshot.val()) {
             var dto = snapshot.val()[level1];
-            displayTable += "<tbody><tr><td><img src='" + dto.prodimage + "' height='100' width='100'/></td><td>" + dto.prodname + "</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>" + dto.barterer + "</a></td><td>" + dto.id + "</td><td>" + dto.proddesc + "</td><td>" + dto.prodquantity + "</td>" + "</tr></tbody>";
 
+            if (dto.status === "open" && dto.barterid != userID)
+                displayTable += "<tbody><tr><td><img src='" + dto.prodimage + "' height='100' width='100'/></td><td>" + dto.prodname + "</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>" + dto.barterer + "</a></td><td>" + dto.id + "</td><td>" + dto.proddesc + "</td><td>" + dto.prodquantity + "</td><td>" +
+                "<button class='btn btn-sm btn-primary btn-block' data-toggle='modal' data-target='#barterModal' onclick='barterItem(" + dto.id + ");'>Barter</button>" + "</td></tr></tbody>";
         }
         displayTable += "</table>";
         document.getElementById('cont').innerHTML = displayTable;
-
+        //getUserProducts()
     });
 
 }
@@ -751,4 +771,28 @@ function googleTranslateElementInit() {
 
     asd();
     remove();
+}
+
+function getUserProducts() {
+    var database = firebase.database();
+    var userprod = firebase.database().ref('products/');
+    var select=document.getElementById('ownprod');
+    userprod.on('value', function (snapshot) {
+        var prods = [];
+        var prodname=[];
+        for (var lvl1 in snapshot.val()) {
+            var dto = snapshot.val()[lvl1];
+            if (dto.barterid == localStorage.getItem("uid")) {
+                prods.push(dto);
+                console.log(dto);
+                prodname.push(dto.prodname);
+                var option = dto.prodname;
+  select.options.add(new Option(option));
+            }
+        }
+
+        
+       // document.getElementById('useritems').appendChild();
+        console.log(prods)
+    });
 }
