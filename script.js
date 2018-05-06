@@ -18,7 +18,7 @@ function login() {
             }
             window.location.href = 'home.html';
         })
-        .catch(function(error) {
+        .catch(function (error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignIn: ' + error);
         });
@@ -40,7 +40,7 @@ function register() {
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(function(response) {
+        .then(function (response) {
             console.log('response SignUp: ', response);
 
             if (typeof (Storage) !== "undefined") {
@@ -53,9 +53,9 @@ function register() {
             }
 
             createProfile(response.uid, email);
-           // window.location.href = 'home.html';
+            // window.location.href = 'home.html';
         })
-        .catch(function(error) {
+        .catch(function (error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignUp: ', error);
         });
@@ -618,28 +618,28 @@ function getPoints() {
 }
 
 function createProfile(userid, email) {
-	var uploadFile = document.getElementById('img-upload');
+    var uploadFile = document.getElementById('img-upload');
     if (uploadFile.files && uploadFile.files.length > 0) {
-    var database = firebase.database();
-    const username = document.getElementById('register-username').value,
-        tel = document.getElementById('register-tel').value,
-        selection = document.getElementById('register-neo');
-    var selectedneo = selection.options[selection.selectedIndex].value;
-var fReader = new FileReader();
+        var database = firebase.database();
+        const username = document.getElementById('register-username').value,
+            tel = document.getElementById('register-tel').value,
+            selection = document.getElementById('register-neo');
+        var selectedneo = selection.options[selection.selectedIndex].value;
+        var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
-        fReader.onloadend = function(event) {
-        	var img = document.getElementById('imgResult');
+        fReader.onloadend = function (event) {
+            var img = document.getElementById('imgResult');
             img.src = event.target.result;
             var url = img.src.replace('data:image/jpeg;base64', '');
-    firebase.database().ref('users/' + userid + '/profile').set({
-        email: email,
-        userid: userid,
-        neozone: selectedneo,
-        contactno: tel,
-        profilepic:url
-    }).then(function (response) {});
-};
-}
+            firebase.database().ref('users/' + userid + '/profile').set({
+                email: email,
+                userid: userid,
+                neozone: selectedneo,
+                contactno: tel,
+                profilepic: url
+            }).then(function (response) {});
+        };
+    }
 }
 
 
@@ -654,11 +654,7 @@ function uploadImage() {
         console.log("uploadFile.files[0]", uploadFile.files[0].name);
         var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
-        fReader.onloadend = function(event) {
-           /* var img = document.getElementById('imgResult');
-            img.src = event.target.result;
-            var url = img.src.replace('data:image/jpeg;base64', '');*/
-
+        fReader.onloadend = function (event) {
 
             firebase.database().ref('products/' + id).set({
                 id: id,
@@ -667,9 +663,9 @@ function uploadImage() {
                 prodquantity: 5,
                 barterer: 'sam martin',
                 prodimage: url
-            }).then(function(response) {
+            }).then(function (response) {
                 console.log(response);
-            }).catch(function(err) {
+            }).catch(function (err) {
                 console.log(err);
             });
 
@@ -677,6 +673,27 @@ function uploadImage() {
         };
     }
     console.log('uploadFile.files', uploadFile.files);
+}
+
+function createProduct() {
+    var name = document.getElementById("product-name").value,
+        desc = document.getElementById("product-desc").value,
+        qty = document.getElementById("product-qty").value;
+
+    var dt = new Date();
+    var id = dt.getMilliseconds() + dt.getSeconds() + dt.getHours();
+
+    firebase.database().ref('products/' + id).set({
+        id: id,
+        prodname: name,
+        proddesc: desc,
+        prodquantity: qty,
+        barterer: 'sam martin'
+    }).then(function (response) {
+        console.log(response);
+    }).catch(function (err) {
+        console.log(err);
+    });
 }
 
 function checkSession() {
@@ -694,20 +711,20 @@ function checkSession() {
 
 
 function getProducts() {
-    
-    var displayTable="<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
+
+    var displayTable = "<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
     var database = firebase.database();
     var productRef = firebase.database().ref('products/');
-    productRef.on('value', function(snapshot) {
+    productRef.on('value', function (snapshot) {
 
         for (var level1 in snapshot.val()) {
             var dto = snapshot.val()[level1];
-            displayTable+="<tbody><tr><td><img src='"+dto.prodimage+"' height='100' width='100'/></td><td>"+dto.prodname+"</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>"+dto.barterer+"</a></td><td>"+dto.id+"</td><td>"+dto.proddesc+"</td><td>"+dto.prodquantity+"</td>"+"</tr></tbody>";
-           
+            displayTable += "<tbody><tr><td><img src='" + dto.prodimage + "' height='100' width='100'/></td><td>" + dto.prodname + "</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>" + dto.barterer + "</a></td><td>" + dto.id + "</td><td>" + dto.proddesc + "</td><td>" + dto.prodquantity + "</td>" + "</tr></tbody>";
+
         }
-        displayTable+="</table>";
-       document.getElementById('cont').innerHTML=displayTable;
-       
+        displayTable += "</table>";
+        document.getElementById('cont').innerHTML = displayTable;
+
     });
 
 }
