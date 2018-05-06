@@ -53,7 +53,7 @@ function register() {
             }
 
             createProfile(response.uid, email);
-            window.location.href = 'home.html';
+           // window.location.href = 'home.html';
         })
         .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
@@ -618,36 +618,31 @@ function getPoints() {
 }
 
 function createProfile(userid, email) {
+	var uploadFile = document.getElementById('img-upload');
+    if (uploadFile.files && uploadFile.files.length > 0) {
     var database = firebase.database();
     const username = document.getElementById('register-username').value,
         tel = document.getElementById('register-tel').value,
         selection = document.getElementById('register-neo');
     var selectedneo = selection.options[selection.selectedIndex].value;
-
+var fReader = new FileReader();
+        fReader.readAsDataURL(uploadFile.files[0]);
+        fReader.onloadend = function(event) {
+        	var img = document.getElementById('imgResult');
+            img.src = event.target.result;
+            var url = img.src.replace('data:image/jpeg;base64', '');
     firebase.database().ref('users/' + userid + '/profile').set({
         email: email,
         userid: userid,
         neozone: selectedneo,
         contactno: tel,
+        profilepic:url
     }).then(function (response) {});
+};
+}
 }
 
-function insertproduct() {
-    var database = firebase.database();
-    var d = new Date();
-    var n = d.getTime();
 
-    var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
-
-    firebase.database().ref('products/' + id).set({
-        id: id,
-        prodname: 'Sea Weade',
-        prod: 'xxsdsw',
-        prodquantity: '5x',
-        barterer: 'xxxxxx',
-        prodimage: 'rrrr',
-    });
-}
 
 function uploadImage() {
     var uploadFile = document.getElementById('img-upload');
@@ -660,9 +655,9 @@ function uploadImage() {
         var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
         fReader.onloadend = function(event) {
-            var img = document.getElementById('imgResult');
+           /* var img = document.getElementById('imgResult');
             img.src = event.target.result;
-            var url = img.src.replace('data:image/jpeg;base64', '');
+            var url = img.src.replace('data:image/jpeg;base64', '');*/
 
 
             firebase.database().ref('products/' + id).set({
