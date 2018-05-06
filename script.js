@@ -690,7 +690,7 @@ function createProduct() {
         prodquantity: qty,
         barterer: 'sam martin'
     }).then(function (response) {
-        console.log(response);
+        $('#addItemModal').modal('hide');
     }).catch(function (err) {
         console.log(err);
     });
