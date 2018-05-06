@@ -48,157 +48,136 @@
             <li class="breadcrumb-item active" aria-current="page">Market</li>
         </ol>
     </nav>
-    <div class="container" id="cont">
-        <!--table-->
-        <!-- <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Seller</th>
-                        <th scope="col">Item </th>
-                        <th scope="col">Desc</th>
-                    </tr>
-                </thead>
-                <tbody> -->
-        <!-- <tr>
-                        <th scope="row"> <a href="#"data-toggle="modal" data-target="#profileModal">Mark</a></th>
-                        <td>fish</td>
-                        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
+    <main role="main" class="container">
+        <div class="table-responsive" id="cont">
 
-                    </tr>
-                    <tr>
-                            <th scope="row">Jessica</th>
-                            <td>pussy</td>
-                            <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
-    
-                        </tr> -->
-        <!--   </tbody>
-            </table> -->
-        <!-- Button trigger modal -->
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <img src="http://via.placeholder.com/140x140" alt="">
-                        </div>
-                        <div class="form-group">
-                            <label for="zip">Name</label>
-                            <p>Mark</p>
-                            <label for="zip">Neo Type</label>
-                            <p>Fisherman</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-   
-
-    <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Add Item</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-
-                        <div class="form-frame__reg">
-                            <!-- to be refactored -->
-                            <div class="form">
-                                <div class="form-group">
-                                    <label for="">Name</label>
-                                    <div class="input-group">
-                                        <input type="text" id="product-name" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Description</label>
-                                    <div class="input-group">
-                                        <input type="text" id="product-desc" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Quantity</label>
-                                    <div class="input-group">
-                                        <input type="number" id="product-qty" class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="form-btn">
-                                    <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="createProduct();">
-                                        <i class="fa fa-check-circle fa-2x"></i>
-                                    </button>
-                                </div>
+        <!-- Modal -->
+        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <img src="http://via.placeholder.com/140x140" alt="">
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">Name</label>
+                                <p>Mark</p>
+                                <label for="zip">Neo Type</label>
+                                <p>Fisherman</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profileModalLabel">Add Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+
+                            <div class="form-frame__reg">
+                                <!-- to be refactored -->
+                                <div class="form">
+                                    <div class="form-group">
+                                        <label for="">Name</label>
+                                        <div class="input-group">
+                                            <input type="text" id="product-name" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Description</label>
+                                        <div class="input-group">
+                                            <input type="text" id="product-desc" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Quantity</label>
+                                        <div class="input-group">
+                                            <input type="number" id="product-qty" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-btn">
+                                        <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="createProduct();">
+                                            <i class="fa fa-check-circle fa-2x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="barterModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Produce Name</th>
+                                        <th scope="col">Product ID</th>
+                                        <th scope="col">Product Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p id="pname" />
+                                        </td>
+
+                                        <td>
+                                            <p id="pid" />
+                                        </td>
+                                        <td>
+                                            <p id="pqty" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <div id="useritems">
+                                <select id="ownprod"></select>
+                            </div>
+                            <button class='btn btn-sm btn-primary btn-block'>Barter This Item</button>
+
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="barterModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                       
-                        <table>
-                            <thead><tr>
-                                    <th scope="col">Produce Name</th>
-                                    <th scope="col">Product ID</th>
-                                    <th scope="col">Product Qty</th>
-                                </tr></thead>
-                            <tbody><tr>
-                                    <td><p id="pname"/></td>
-                                    
-                                    <td>
-                                        <p id="pid" />
-                                    </td>
-                                    <td>
-                                        <p id="pqty" />
-                                    </td>
-                                </tr></tbody>
-                            
-                        </table>
-                        <div id="useritems"><select id="ownprod"></select></div>
-                       <button class='btn btn-sm btn-primary btn-block'>Barter This Item</button>
-                    
-                    </div>
-                   
-                </div>
-            </div>
         </div>
-    </div>
-    </div>
+
+    </main>
 
     <!--- Footer -->
     <footer>
