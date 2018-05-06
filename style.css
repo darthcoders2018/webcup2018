@@ -346,6 +346,10 @@ figure {
     margin-right: auto; */
     padding: auto;
 }
+
+#error_display {
+    color: red;
+}
 /* .goog-logo-link {
     display:none !important;
  } 
