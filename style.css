@@ -3,7 +3,7 @@ html, body {
     height: 100%;
     width: 100%;
     font-family: 'Poppins', sans-serif;
-    color: #222;
+    color: #448AA6;
 }
 
 /* .navbar {
@@ -329,7 +329,6 @@ figure {
 }
 .nav-special{
     z-index: 9999;
-    background-color: white
 }
 
 #form-center {
