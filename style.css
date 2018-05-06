@@ -47,13 +47,13 @@ html, body {
 }
 
 .btn-primary {
-    background-color: #6648b1;
-    border: 1px solid #6648b1;
+    background-color: #2B2E40;
+    border: 1px solid #2B2E40;
 }
 
 .btn-primary:hover {
-    background-color: #563d7c;
-    border: 1px solid #563d7c;
+    background-color: #222433;
+    border: 1px solid #222433;
 }
 
 .jumbotron {
@@ -78,7 +78,7 @@ html, body {
     margin-bottom: 1rem;
 }
 
-.fa-code {
+/* .fa-code {
     color: #e54d26;
 }
 
@@ -131,11 +131,11 @@ html, body {
 
 .fa-facebook:hover, .fa-twitter:hover, .fa-google-plus-g:hover, .fa-instagram:hover, .fa-youtube:hover {
     color: #d5d5d5;
-}
+} */
 
 footer {
-    background-color: #3f3f3f;
-    color: #d5d5d5;
+    background-color: #8C543f;
+    color: #F2E6D8;
     padding-top: 2rem;
 }
 
