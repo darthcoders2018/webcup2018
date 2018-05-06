@@ -22,7 +22,7 @@ function login() {
         .then(function (response) {
             console.log(response);
 
-            if (typeof(Storage) !== "undefined") {
+            if (typeof (Storage) !== "undefined") {
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
                 localStorage.setItem("uname", response.username);
