@@ -776,14 +776,23 @@ function googleTranslateElementInit() {
 function getUserProducts() {
     var database = firebase.database();
     var userprod = firebase.database().ref('products/');
+    var select=document.getElementById('ownprod');
     userprod.on('value', function (snapshot) {
         var prods = [];
+        var prodname=[];
         for (var lvl1 in snapshot.val()) {
             var dto = snapshot.val()[lvl1];
             if (dto.barterid == localStorage.getItem("uid")) {
                 prods.push(dto);
+                console.log(dto);
+                prodname.push(dto.prodname);
+                var option = dto.prodname;
+  select.options.add(new Option(option));
             }
         }
+
+        
+       // document.getElementById('useritems').appendChild();
         console.log(prods)
     });
 }
