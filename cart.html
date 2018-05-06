@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body data-spy="scroll" data-target=".navbar" onload="checkSession();">
+<body class="general-color" data-spy="scroll" data-target=".navbar" onload="checkSession();">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
@@ -33,9 +33,11 @@
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="cart.html">Cart</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#addItemModal">Add item</a>
                             <a class="dropdown-item" href="#" onclick="logout();">Logout</a>
                         </div>
+                    </li>
+                    <li class="nav-item">
+                        <div id="google_translate_element"></div>
                     </li>
                 </ul>
 
@@ -56,9 +58,9 @@
 
     </nav>
 
-    
 
-    <div class="container">
+
+    <div class="container general-color">
 
         <table class="table">
             <thead>
@@ -102,86 +104,79 @@
         </table>
     </div>
     <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="profileModalLabel">Add Item</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <h5 class="modal-title" id="profileModalLabel">Add Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body container">
-                  <div class="container-fluid">
-        
-                    <div class="form-frame__reg">
-                      <!-- to be refactored -->
-                      <div class="form container-fluid" id="form-center">
-                        <div class="form-group">
-                          <label for="">Name</label>
-                          <div class="input-group">
-                            <input required type="text" id="product-name" class="form-control" />
-                          </div>
+                    <div class="container-fluid">
+
+                        <div class="form-frame__reg">
+                            <!-- to be refactored -->
+                            <div class="form container-fluid" id="form-center">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <div class="input-group">
+                                        <input required type="text" id="product-name" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Description</label>
+                                    <div class="input-group">
+                                        <input required type="text" id="product-desc" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Quantity</label>
+                                    <div class="input-group">
+                                        <input required type="number" id="product-qty" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Picture</label>
+                                    <div class="input-group">
+                                        <input type="file" id="product-img" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-btn">
+                                    <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="createProduct();">
+                                        <i class="fa fa-check-circle fa-2x"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                          <label for="">Description</label>
-                          <div class="input-group">
-                            <input required type="text" id="product-desc" class="form-control" />
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="">Quantity</label>
-                          <div class="input-group">
-                            <input required type="number" id="product-qty" class="form-control" />
-                          </div>
-                        </div>
-        
-                        <div class="form-group">
-                          <label for="">Picture</label>
-                          <div class="input-group">
-                            <input type="file" id="product-img" class="form-control" />
-                          </div>
-                        </div>
-        
-                        <div class="form-btn">
-                          <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="createProduct();">
-                            <i class="fa fa-check-circle fa-2x"></i>
-                          </button>
-                        </div>
-                      </div>
                     </div>
-                    <!-- <div class="col-md-4 mb-3">
-                      <img src="http://via.placeholder.com/140x140" alt="">
-                    </div>
-                    <div class="form-group">
-                      <label for="zip">Name</label>
-                      <p>Mark</p>
-                      <label for="zip">Neo Type</label>
-                      <p>Fisherman</p>
-                    </div> -->
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
 
 
     <!--- Footer -->
     <footer>
-            <div class="container-fluid padding">
-                <div class="row text-center">
-                    <div class="col-12">
-                        <h5>&copy; 2018 | Darth Coders - WebCup 2018</h5>
-                    </div>
+        <div class="container-fluid padding">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h5>&copy; 2018 | Darth Coders - WebCup 2018</h5>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="script.js"></script>
+
 
 </body>
 

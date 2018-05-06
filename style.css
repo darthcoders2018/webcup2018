@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     font-family: 'Poppins', sans-serif;
@@ -65,7 +66,13 @@ html, body {
     padding-bottom: 2rem;
 }
 
-#welcome, #map, #contact-us{
+#welcome,
+#map,
+#contact-us {
+    background-color: #F2E6D8;
+}
+
+.general-color {
     background-color: #F2E6D8;
 }
 
@@ -161,7 +168,8 @@ footer a {
 }
 
 hr.light-100 {
-    border-top: 1px solid #F2E6D8;;
+    border-top: 1px solid #F2E6D8;
+    ;
     width: 100%;
     margin-top: .8rem;
     margin-bottom: 1rem;
@@ -202,7 +210,6 @@ hr.light-100 {
 }
 
 @media (max-width: 576px) {
-
     .carousel-inner {
         height: 17em;
     }
@@ -274,12 +281,11 @@ figure {
 }
 
 .full-body-cover {
-    position:relative;
-	height:100vh;
-	 background: url(https://images.pexels.com/photos/256150/pexels-photo-256150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    position: relative;
+    height: 100vh;
+    background: url(https://images.pexels.com/photos/256150/pexels-photo-256150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
     background-repeat: repeat-x;
     background-size: cover;
-
 }
 
 /*--- sign in form --*/
@@ -293,17 +299,21 @@ figure {
     position: absolute;
     width: 500px;
     margin: 0 auto;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     top: 40%;
     left: 50%;
     transform: translate(-50%, -40%);
+}
+
+.form-frame__reg label {
+    color: #2B2E40;
 }
 
 .form-frame__log {
     position: absolute;
     width: 500px;
     margin: 0 auto;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -40%);
@@ -320,11 +330,12 @@ figure {
     .form-frame__reg {
         width: 100%;
     }
-
 }
+
 .form-frame__log .form {
     padding: 25px;
 }
+
 .form-frame__reg .form {
     padding: 25px;
 }
@@ -337,7 +348,8 @@ figure {
 .form-bg {
     position: relative;
 }
-.nav-special{
+
+.nav-special {
     z-index: 9999;
 }
 
@@ -346,6 +358,10 @@ figure {
     margin-right: auto; */
     padding: auto;
 }
+
+#error_display {
+    color: red;
+}
 /* .goog-logo-link {
     display:none !important;
  } 
@@ -353,7 +369,6 @@ figure {
  .goog-te-gadget{
     color: transparent !important;
  } */
-
 
 /*
 Extra small (xs) devices (portrait phones, less than 576px)
