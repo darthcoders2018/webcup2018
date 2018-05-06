@@ -3,7 +3,7 @@ html, body {
     height: 100%;
     width: 100%;
     font-family: 'Poppins', sans-serif;
-    color: #222;
+    color: #448AA6;
 }
 
 /* .navbar {
@@ -47,13 +47,13 @@ html, body {
 }
 
 .btn-primary {
-    background-color: #6648b1;
-    border: 1px solid #6648b1;
+    background-color: #2B2E40;
+    border: 1px solid #2B2E40;
 }
 
 .btn-primary:hover {
-    background-color: #563d7c;
-    border: 1px solid #563d7c;
+    background-color: #222433;
+    border: 1px solid #222433;
 }
 
 .jumbotron {
@@ -78,7 +78,7 @@ html, body {
     margin-bottom: 1rem;
 }
 
-.fa-code {
+/* .fa-code {
     color: #e54d26;
 }
 
@@ -131,11 +131,11 @@ html, body {
 
 .fa-facebook:hover, .fa-twitter:hover, .fa-google-plus-g:hover, .fa-instagram:hover, .fa-youtube:hover {
     color: #d5d5d5;
-}
+} */
 
 footer {
-    background-color: #3f3f3f;
-    color: #d5d5d5;
+    background-color: #8C543f;
+    color: #F2E6D8;
     padding-top: 2rem;
 }
 
@@ -264,10 +264,12 @@ figure {
 }
 
 .full-body-cover {
-    border: 0;
-    width: 100vw;
-    height: 100vh;
-    background: blue;
+    position:relative;
+	height:100vh;
+	 background: url(https://images.pexels.com/photos/256150/pexels-photo-256150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-repeat: repeat-x;
+    background-size: cover;
+
 }
 
 /*--- sign in form --*/
@@ -281,8 +283,8 @@ figure {
     position: absolute;
     width: 500px;
     margin: 0 auto;
-    background: white;
-    top: 70%;
+    background: rgba(255,255,255,0.3);
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -40%);
 }
@@ -291,7 +293,7 @@ figure {
     position: absolute;
     width: 500px;
     margin: 0 auto;
-    background: white;
+    background: rgba(255,255,255,0.3);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -40%);
@@ -327,7 +329,12 @@ figure {
 }
 .nav-special{
     z-index: 9999;
-    background-color: white
+}
+
+#form-center {
+    /* margin-left: auto;
+    margin-right: auto; */
+    padding: auto;
 }
 /* .goog-logo-link {
     display:none !important;
