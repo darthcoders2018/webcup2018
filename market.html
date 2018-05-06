@@ -12,7 +12,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="home.html">
+            <a class="navbar-brand" href="market.html">
                 <img src="img/anchor-brand.png" alt="anchorbrand">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -43,7 +43,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="home.html">Home</a>
+                <a href="market.html">Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Market</li>
         </ol>
@@ -141,21 +141,38 @@
                         <div class="container">
 
                             <table>
-                                <tr><th>Product Name</th><th>Product ID</th><th>Product Qty</th></tr>
-                                <tr><td><p id="pname"></p></td></p><td><p id="pid"></p></td><td><p id="pqty"/></td></tr>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Product ID</th>
+                                    <th>Product Qty</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p id="pname"></p>
+                                    </td>
+                                    </p>
+                                    <td>
+                                        <p id="pid"></p>
+                                    </td>
+                                    <td>
+                                        <p id="pqty" />
+                                    </td>
+                                </tr>
                             </table>
-                            <div id="useritems"><select id="ownprod"></select></div>
-                       <button class='btn btn-sm btn-primary btn-block' onclick="createBarter();">Barter This Item</button>
-                         
+                            <div id="useritems">
+                                <select id="ownprod"></select>
+                            </div>
+                            <button class='btn btn-sm btn-primary btn-block' onclick="createBarter();">Barter This Item</button>
 
-                                        <td>
-                                            <p id="pid" />
-                                        </td>
-                                        <td>
-                                            <p id="pqty" />
-                                        </td>
-                                    </tr>
-                                </tbody>
+
+                            <td>
+                                <p id="pid" />
+                            </td>
+                            <td>
+                                <p id="pqty" />
+                            </td>
+                            </tr>
+                            </tbody>
 
                             </table>
                             <div id="useritems">
@@ -176,10 +193,9 @@
     <!--- Footer -->
     <footer>
         <div class="container-fluid padding">
-            <div class="row text-center bg-dark">
+            <div class="row text-center">
                 <div class="col-12">
-                    <hr class="light-100">
-                    <h5>&copy;website</h5>
+                    <h5>&copy; 2018 | Darth Coders - WebCup 2018</h5>
                 </div>
             </div>
         </div>

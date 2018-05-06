@@ -19,7 +19,7 @@ function login() {
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
             }
-            window.location.href = 'home.html';
+            window.location.href = 'market.html';
         })
         .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
