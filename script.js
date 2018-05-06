@@ -5,10 +5,10 @@ function login() {
     firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(function (response) {
+        .then(function(response) {
             console.log(response);
 
-            if (typeof (Storage) !== "undefined") {
+            if (typeof(Storage) !== "undefined") {
                 var objToken = {
                     uid: response.uid,
                     email: response.email
@@ -18,14 +18,14 @@ function login() {
             }
             window.location.href = 'home.html';
         })
-        .catch(function (error) {
+        .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignIn: ' + error);
         });
 }
 
 function logout() {
-    if (typeof (Storage) !== "undefined") {
+    if (typeof(Storage) !== "undefined") {
         localStorage.removeItem("uid");
         localStorage.removeItem("email");
     }
@@ -40,10 +40,10 @@ function register() {
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(function (response) {
+        .then(function(response) {
             console.log('response SignUp: ', response);
 
-            if (typeof (Storage) !== "undefined") {
+            if (typeof(Storage) !== "undefined") {
                 var objToken = {
                     uid: response.uid,
                     email: response.email
@@ -55,7 +55,7 @@ function register() {
             createProfile(response.uid, email);
             // window.location.href = 'home.html';
         })
-        .catch(function (error) {
+        .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignUp: ', error);
         });
@@ -627,7 +627,7 @@ function createProfile(userid, email) {
         var selectedneo = selection.options[selection.selectedIndex].value;
         var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
-        fReader.onloadend = function (event) {
+        fReader.onloadend = function(event) {
             var img = document.getElementById('imgResult');
             img.src = event.target.result;
             var url = img.src.replace('data:image/jpeg;base64', '');
@@ -637,7 +637,7 @@ function createProfile(userid, email) {
                 neozone: selectedneo,
                 contactno: tel,
                 profilepic: url
-            }).then(function (response) {});
+            }).then(function(response) {});
         };
     }
 }
@@ -654,7 +654,7 @@ function uploadImage() {
         console.log("uploadFile.files[0]", uploadFile.files[0].name);
         var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
-        fReader.onloadend = function (event) {
+        fReader.onloadend = function(event) {
 
             firebase.database().ref('products/' + id).set({
                 id: id,
@@ -663,9 +663,9 @@ function uploadImage() {
                 prodquantity: 5,
                 barterer: 'sam martin',
                 prodimage: url
-            }).then(function (response) {
+            }).then(function(response) {
                 console.log(response);
-            }).catch(function (err) {
+            }).catch(function(err) {
                 console.log(err);
             });
 
@@ -690,16 +690,16 @@ function createProduct() {
         prodquantity: qty,
         barterid: userID,
         status: 'open'
-    }).then(function (response) {
+    }).then(function(response) {
         $('#addItemModal').modal('hide');
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log(err);
     });
 }
 
 function checkSession() {
 
-    if (typeof (Storage) !== "undefined") {
+    if (typeof(Storage) !== "undefined") {
 
         var userID = localStorage.getItem("uid"),
             email = localStorage.getItem("email");
@@ -715,15 +715,14 @@ function barterItem(itemID) {
 
     console.log(itemID);
 
-    var database=firebase.database();
-    var prod=database.ref('products/'+itemID);
-    prod.on('value',function(snapshot)
-{
-document.getElementById('pid').innerHTML=snapshot.val().id;
-document.getElementById('pname').innerHTML=snapshot.val().prodname;
-document.getElementById('pqty').innerHTML=snapshot.val().prodquantity;
+    var database = firebase.database();
+    var prod = database.ref('products/' + itemID);
+    prod.on('value', function(snapshot) {
+        document.getElementById('pid').innerHTML = snapshot.val().id;
+        document.getElementById('pname').innerHTML = snapshot.val().prodname;
+        document.getElementById('pqty').innerHTML = snapshot.val().prodquantity;
 
-});
+    });
 }
 
 function getProducts() {
@@ -733,7 +732,7 @@ function getProducts() {
     var productRef = firebase.database().ref('products/');
     var userID = localStorage.getItem("uid");
 
-    productRef.on('value', function (snapshot) {
+    productRef.on('value', function(snapshot) {
 
         for (var level1 in snapshot.val()) {
             var dto = snapshot.val()[level1];
@@ -753,15 +752,15 @@ function getProducts() {
 var d = new Date();
 var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
 
-var asd = function () {
+var asd = function() {
     $('#google_translate_element').find('select').addClass('form-control');
     console.log("trigerred")
 }
 
-var remove = function () {
+var remove = function() {
     $(".goog-logo-link").empty();
     $('.goog-te-gadget').html($('.goog-te-gadget').children());
-    console.log('helo')
+   
 }
 
 function googleTranslateElementInit() {
@@ -776,10 +775,10 @@ function googleTranslateElementInit() {
 function getUserProducts() {
     var database = firebase.database();
     var userprod = firebase.database().ref('products/');
-    var select=document.getElementById('ownprod');
-    userprod.on('value', function (snapshot) {
+    var select = document.getElementById('ownprod');
+    userprod.on('value', function(snapshot) {
         var prods = [];
-        var prodname=[];
+        var prodname = [];
         for (var lvl1 in snapshot.val()) {
             var dto = snapshot.val()[lvl1];
             if (dto.barterid == localStorage.getItem("uid")) {
@@ -787,12 +786,31 @@ function getUserProducts() {
                 console.log(dto);
                 prodname.push(dto.prodname);
                 var option = dto.prodname;
-  select.options.add(new Option(option));
+                select.options.add(new Option(option));
             }
         }
 
-        
-       // document.getElementById('useritems').appendChild();
-        console.log(prods)
+
+      
     });
+}
+
+function contact() {
+	
+    var id=new Date().getMilliseconds()+new Date().getHours();
+        firebase.database().ref('contactus/' + id).set({
+                id: id,
+                subject:document.getElementById('contact-subject').value,
+                message:document.getElementById('contact-message').valie,
+                email:document.getElementById('contact-email').value
+            }).then(function(response) {
+            	document.getElementById('error_display').innerHTML="Query submit,We will get back to you soon :)";
+                console.log(response);
+                document.getElementById('contact-subject').innerHTML="";
+                document.getElementById('contact-subject').innerHTML="";
+                document.getElementById('contact-subject').innerHTML="";
+            }).catch(function(err) {
+                console.log(err);
+            });
+
 }
