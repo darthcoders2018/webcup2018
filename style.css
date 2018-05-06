@@ -329,6 +329,12 @@ figure {
     z-index: 9999;
     background-color: white
 }
+
+#form-center {
+    /* margin-left: auto;
+    margin-right: auto; */
+    padding: auto;
+}
 /* .goog-logo-link {
     display:none !important;
  } 

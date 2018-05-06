@@ -1,3 +1,6 @@
+var prods = [];
+var prodname = [];
+
 function login() {
     const email = document.getElementById('signin-email').value,
         password = document.getElementById('signin-password').value;
@@ -715,15 +718,14 @@ function barterItem(itemID) {
 
     console.log(itemID);
 
-    var database=firebase.database();
-    var prod=database.ref('products/'+itemID);
-    prod.on('value',function(snapshot)
-{
-document.getElementById('pid').innerHTML=snapshot.val().id;
-document.getElementById('pname').innerHTML=snapshot.val().prodname;
-document.getElementById('pqty').innerHTML=snapshot.val().prodquantity;
+    var database = firebase.database();
+    var prod = database.ref('products/' + itemID);
+    prod.on('value', function (snapshot) {
+        document.getElementById('pid').innerHTML = snapshot.val().id;
+        document.getElementById('pname').innerHTML = snapshot.val().prodname;
+        document.getElementById('pqty').innerHTML = snapshot.val().prodquantity;
 
-});
+    });
 }
 
 function getProducts() {
@@ -776,10 +778,9 @@ function googleTranslateElementInit() {
 function getUserProducts() {
     var database = firebase.database();
     var userprod = firebase.database().ref('products/');
-    var select=document.getElementById('ownprod');
+    var select = document.getElementById('ownprod');
     userprod.on('value', function (snapshot) {
-        var prods = [];
-        var prodname=[];
+
         for (var lvl1 in snapshot.val()) {
             var dto = snapshot.val()[lvl1];
             if (dto.barterid == localStorage.getItem("uid")) {
@@ -787,12 +788,48 @@ function getUserProducts() {
                 console.log(dto);
                 prodname.push(dto.prodname);
                 var option = dto.prodname;
-  select.options.add(new Option(option));
+                select.options.add(new Option(option));
             }
         }
 
-        
-       // document.getElementById('useritems').appendChild();
+
+        // document.getElementById('useritems').appendChild();
         console.log(prods)
+    });
+}
+
+function createBarter() {
+    var e = document.getElementById("ownprod");
+    var strUser = e.options[e.selectedIndex].text;
+    var tme = new Date().getMilliseconds() + new Date().getHours();
+
+    console.log("strUser", strUser)
+
+    var objBody = {
+        id: tme,
+        sender: localStorage.getItem("uid"),
+        recipient: (prods[e.selectedIndex]).id,
+        prodname1: document.getElementById('pname').innerText,
+        prodid1: document.getElementById('pid').innerText,
+        prodname2: strUser,
+        prodid2: (prods[e.selectedIndex]).id,
+    };
+
+    firebase.database().ref('transactions/' + tme).set(objBody).then(function (response) {
+        /* $('#barterModal').modal('hide'); */
+
+        firebase.database().ref('products/' + objBody.prodid1).set({
+            status: "asd"
+        }).then(function (response1) {
+
+            firebase.database().ref('products/' + objBody.recipient).set({
+                status:"asd"
+            }).then(function (response2) {
+
+            });
+        });
+
+    }).catch(function (err) {
+        console.log(err);
     });
 }
