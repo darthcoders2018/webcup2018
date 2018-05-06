@@ -23,7 +23,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="market.html">Market</a>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-smile fa-2x"></i>
@@ -50,14 +49,13 @@
     </nav>
     <main role="main" class="container">
         <div class="table-responsive" id="cont">
-
         </div>
         <!-- Modal -->
         <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="profileModalLabel">Profile</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -78,8 +76,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -91,7 +87,6 @@
                     </div>
                     <div class="modal-body">
                         <div class="container">
-
                             <div class="form-frame__reg">
                                 <!-- to be refactored -->
                                 <div class="form">
@@ -113,7 +108,6 @@
                                             <input type="number" id="product-qty" class="form-control" />
                                         </div>
                                     </div>
-
                                     <div class="form-btn">
                                         <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="createProduct();">
                                             <i class="fa fa-check-circle fa-2x"></i>
@@ -121,7 +115,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -132,14 +125,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="profileModalLabel">Barter/Swap</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="container">
-
                             <table>
                                 <tr>
                                     <th>Product Name</th>
@@ -159,37 +151,22 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div id="useritems">
-                                <select id="ownprod"></select>
+                            <div class="row">
+                                <div id="useritems">
+                                    <select id="ownprod"></select>
+                                </div>
                             </div>
-                            <button class='btn btn-sm btn-primary btn-block' onclick="createBarter();">Barter This Item</button>
-
-
-                            <td>
-                                <p id="pid" />
-                            </td>
-                            <td>
-                                <p id="pqty" />
-                            </td>
-                            </tr>
-                            </tbody>
-
-                            </table>
-                            <div id="useritems">
-                                <select id="ownprod"></select>
+                            <hr>
+                            <div class="row">
+                                <button class='btn btn-sm btn-primary btn-block' onclick="createBarter();">Barter This Item</button>
                             </div>
-                            <button class='btn btn-sm btn-primary btn-block'>Barter This Item</button>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
         </div>
-
     </main>
-
     <!--- Footer -->
     <footer>
         <div class="container-fluid padding">

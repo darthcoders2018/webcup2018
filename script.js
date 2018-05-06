@@ -57,7 +57,7 @@ function register() {
             }
 
             createProfile(response.uid, email, username);
-          
+
         })
         .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
@@ -643,11 +643,11 @@ function createProfile(userid, email, username) {
                 profilepic: url,
                 username: username
             }).then(function(response) {
-            	window.location.href = 'market.html';
+                window.location.href = 'market.html';
             });
         };
     } else {
-    	window.location.href = 'market.html';
+        window.location.href = 'market.html';
     }
 }
 
@@ -699,10 +699,11 @@ function createProduct() {
         proddesc: desc,
         prodquantity: qty,
         barterid: userID,
-        barterer: uname, 
+        barterer: uname,
         status: 'open'
     }).then(function(response) {
         $('#addItemModal').modal('hide');
+        document.getElementById("product-name").value = document.getElementById("product-desc").value = document.getElementById("product-qty").value = "";
     }).catch(function(err) {
         console.log(err);
     });
@@ -713,7 +714,7 @@ function checkSession() {
     if (typeof(Storage) !== "undefined") {
 
         var userID = localStorage.getItem("uid"),
-        username = localStorage.getItem("uname"),
+            username = localStorage.getItem("uname"),
             email = localStorage.getItem("email");
         if (!userID && !email) {
             window.location.href = 'login.html';
@@ -730,142 +731,140 @@ function barterItem(itemID) {
     var database = firebase.database();
     var prod = database.ref('products/' + itemID);
     prod.on('value', function(snapshot) {
+        document.getElementById('pid').innerHTML = snapshot.val().id;
+        document.getElementById('pname').innerHTML = snapshot.val().prodname;
+        document.getElementById('pqty').innerHTML = snapshot.val().prodquantity;
+        var database = firebase.database();
+        var prod = database.ref('products/' + itemID);
+        prod.on('value', function(snapshot) {
             document.getElementById('pid').innerHTML = snapshot.val().id;
             document.getElementById('pname').innerHTML = snapshot.val().prodname;
             document.getElementById('pqty').innerHTML = snapshot.val().prodquantity;
-            var database = firebase.database();
-            var prod = database.ref('products/' + itemID);
-            prod.on('value', function(snapshot) {
-                document.getElementById('pid').innerHTML = snapshot.val().id;
-                document.getElementById('pname').innerHTML = snapshot.val().prodname;
-                document.getElementById('pqty').innerHTML = snapshot.val().prodquantity;
 
-            });
         });
-    }
+    });
+}
 
-    function getProducts() {
+function getProducts() {
 
-       
-        var database = firebase.database();
-        var productRef = firebase.database().ref('products/');
-        var userID = localStorage.getItem("uid");
 
-        productRef.on('value', function(snapshot) {
-        	 var displayTable = "<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
-            for (var level1 in snapshot.val()) {
-                var dto = snapshot.val()[level1];
+    var database = firebase.database();
+    var productRef = firebase.database().ref('products/');
+    var userID = localStorage.getItem("uid");
 
-                if (dto.status === "open" && dto.barterid != userID)
-                    displayTable += "<tbody><tr><td><img class='img-fluid' src='" + dto.prodimage + "' height='100' width='100'/></td><td>" + dto.prodname + "</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>" + dto.barterer + "</a></td><td>" + dto.id + "</td><td>" + dto.proddesc + "</td><td>" + dto.prodquantity + "</td><td>" +
-                    "<button class='btn btn-sm btn-primary btn-block' data-toggle='modal' data-target='#barterModal' onclick='barterItem(" + dto.id + ");'>Barter</button>" + "</td></tr></tbody>";
+    productRef.on('value', function(snapshot) {
+        var displayTable = "<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
+        for (var level1 in snapshot.val()) {
+            var dto = snapshot.val()[level1];
+
+            if (dto.status === "open" && dto.barterid != userID)
+                displayTable += "<tbody><tr><td><img class='img-fluid' src='" + dto.prodimage + "' height='100' width='100'/></td><td>" + dto.prodname + "</td><td> <a href='#' data-toggle='modal' data-target='#profileModal'>" + dto.barterer + "</a></td><td>" + dto.id + "</td><td>" + dto.proddesc + "</td><td>" + dto.prodquantity + "</td><td>" +
+                "<button class='btn btn-sm btn-primary btn-block' data-toggle='modal' data-target='#barterModal' onclick='barterItem(" + dto.id + ");'>Barter</button>" + "</td></tr></tbody>";
+        }
+        displayTable += "</table>";
+        document.getElementById('cont').innerHTML = displayTable;
+
+        //getUserProducts()
+    });
+
+}
+
+
+var d = new Date();
+var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
+
+var asd = function() {
+    $('#google_translate_element').find('select').addClass('form-control');
+    console.log("trigerred")
+}
+
+var remove = function() {
+    $(".goog-logo-link").empty();
+    $('.goog-te-gadget').html($('.goog-te-gadget').children());
+
+}
+
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en'
+    }, 'google_translate_element');
+
+    asd();
+    remove();
+}
+
+function getUserProducts() {
+    var database = firebase.database();
+    var userprod = firebase.database().ref('products/');
+    var select = document.getElementById('ownprod');
+    userprod.on('value', function(snapshot) {
+
+        for (var lvl1 in snapshot.val()) {
+            var dto = snapshot.val()[lvl1];
+            if (dto.barterid == localStorage.getItem("uid")) {
+                prods.push(dto);
+                console.log(dto);
+                prodname.push(dto.prodname);
+                var option = dto.prodname;
+                select.options.add(new Option(option));
             }
-            displayTable += "</table>";
-            document.getElementById('cont').innerHTML = displayTable;
-
-            //getUserProducts()
-        });
-
-    }
-
-
-    var d = new Date();
-    var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
-
-    var asd = function() {
-        $('#google_translate_element').find('select').addClass('form-control');
-        console.log("trigerred")
-    }
-
-    var remove = function() {
-        $(".goog-logo-link").empty();
-        $('.goog-te-gadget').html($('.goog-te-gadget').children());
-
-    }
-
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en'
-        }, 'google_translate_element');
-
-        asd();
-        remove();
-    }
-
-    function getUserProducts() {
-        var database = firebase.database();
-        var userprod = firebase.database().ref('products/');
-        var select = document.getElementById('ownprod');
-        userprod.on('value', function(snapshot) {
-
-            for (var lvl1 in snapshot.val()) {
-                var dto = snapshot.val()[lvl1];
-                if (dto.barterid == localStorage.getItem("uid")) {
-                    prods.push(dto);
-                    console.log(dto);
-                    prodname.push(dto.prodname);
-                    var option = dto.prodname;
-                    select.options.add(new Option(option));
-                }
-            }
+        }
 
 
 
-        });
-    }
+    });
+}
 
-    function createBarter() {
-        var e = document.getElementById("ownprod");
-        var strUser = e.options[e.selectedIndex].text;
-        var tme = new Date().getMilliseconds() + new Date().getHours();
+function createBarter() {
+    var e = document.getElementById("ownprod");
+    var strUser = e.options[e.selectedIndex].text;
+    var tme = new Date().getMilliseconds() + new Date().getHours();
 
-        console.log("strUser", strUser)
+    console.log("strUser", strUser)
 
-        var objBody = {
-            id: tme,
-            sender: localStorage.getItem("uid"),
-            recipient: (prods[e.selectedIndex]).id,
-            prodname1: document.getElementById('pname').innerText,
-            prodid1: document.getElementById('pid').innerText,
-            prodname2: strUser,
-            prodid2: (prods[e.selectedIndex]).id,
-        };
+    var objBody = {
+        id: tme,
+        sender: localStorage.getItem("uid"),
+        recipient: (prods[e.selectedIndex]).id,
+        prodname1: document.getElementById('pname').innerText,
+        prodid1: document.getElementById('pid').innerText,
+        prodname2: strUser,
+        prodid2: (prods[e.selectedIndex]).id,
+    };
 
-        firebase.database().ref('transactions/' + tme).set(objBody).then(function(response) {
-            /* $('#barterModal').modal('hide'); */
+    firebase.database().ref('transactions/' + tme).set(objBody).then(function(response) {
+        
 
-            firebase.database().ref('products/' + objBody.prodid1).set({
+        firebase.database().ref('products/' + objBody.prodid1).set({
+            status: "asd"
+        }).then(function(response1) {
+
+            firebase.database().ref('products/' + objBody.recipient).set({
                 status: "asd"
-            }).then(function(response1) {
-
-                firebase.database().ref('products/' + objBody.recipient).set({
-                    status: "asd"
-                }).then(function(response2) {
-
-                });
+            }).then(function(response2) {
+            	$('#barterModal').modal('hide');
             });
-
-        }).catch(function(err) {
-            console.log(err);
-        });
-    }
-
-    function contact() {
-
-        var id = new Date().getMilliseconds() + new Date().getHours();
-        firebase.database().ref('contactus/' + id).set({
-            id: id,
-            subject: document.getElementById('contact-subject').value,
-            message: document.getElementById('contact-message').valie,
-            email: document.getElementById('contact-email').value
-        }).then(function(response) {
-            document.getElementById('error_display').innerHTML = "Query submit,We will get back to you soon :)";
-            console.log(response);
-            document.getElementById('contact-subject').innerHTML = "";
-            document.getElementById('contact-subject').innerHTML = "";
-            document.getElementById('contact-subject').innerHTML = "";
-        }).catch(function(err) {
-            console.log(err);
         });
 
-    }
+    }).catch(function(err) {
+        console.log(err);
+    });
+}
+
+function contact() {
+
+    var id = new Date().getMilliseconds() + new Date().getHours();
+    firebase.database().ref('contactus/' + id).set({
+        id: id,
+        subject: document.getElementById('contact-subject').value,
+        message: document.getElementById('contact-message').value,
+        email: document.getElementById('contact-email').value
+    }).then(function(response) {
+        document.getElementById('error_display').innerHTML = "Query submit,We will get back to you soon :)";
+        console.log(response);
+        location.reload();
+    }).catch(function(err) {
+        console.log(err);
+    });
+
+}
