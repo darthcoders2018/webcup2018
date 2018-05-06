@@ -141,18 +141,12 @@
                         <div class="container">
 
                             <table>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Produce Name</th>
-                                        <th scope="col">Product ID</th>
-                                        <th scope="col">Product Qty</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p id="pname" />
-                                        </td>
+                                <tr><th>Product Name</th><th>Product ID</th><th>Product Qty</th></tr>
+                                <tr><td><p id="pname"></p></td></p><td><p id="pid"></p></td><td><p id="pqty"/></td></tr>
+                            </table>
+                            <div id="useritems"><select id="ownprod"></select></div>
+                       <button class='btn btn-sm btn-primary btn-block' onclick="createBarter();">Barter This Item</button>
+                         
 
                                         <td>
                                             <p id="pid" />
