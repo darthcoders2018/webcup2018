@@ -12,7 +12,6 @@ function login() {
             console.log(response);
 
             if (typeof(Storage) !== "undefined") {
-                v
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
                 localStorage.setItem("uname", response.username);
