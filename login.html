@@ -6,10 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Access my account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
-
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="login.html">
+                    <img src="img/anchor-brand.png">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+    
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#welcome">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#community">Community</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#map">Map</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contact">Contact us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Connect</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="login.html">Login</a>
+                                <a class="dropdown-item" href="register.html">Register</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div id="google_translate_element"></div>
+                        </li>
+                    </ul>
+    
+                </div>
+    
+            </div>
+    
+        </nav>
+    <div class="full-body-cover">
+        <div class="container-fluid">
+            <div class="form-bg"></div>
+            <div class="form-frame__log">
+                <div class="form">
+                    <h1 class="h3 mb-3 font-weight-normal">Access my account</h1>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span id="" class="input-group-text">
+                                    <i class="fas fa-at"></i>
+                                </span>
+                            </div>
+                            <input type="email" id="signin-email" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span id="" class="input-group-text">
+                                    <i class="fas fa-key"></i>
+                                </span>
+                            </div>
+                            <input type="Password" id="signin-password" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-btn">
+                        <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="login();">
+                            <i class="fa fa-check-circle fa-2x"></i>
+                        </button>
+                    </div>
+                    <center>
+                        <p color="white" id="error_display"></p>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-functions.js"></script>
+    <script src="firebase.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
