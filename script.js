@@ -1,17 +1,6 @@
 var prods = [];
 var prodname = [];
 
-var currentLanguage = 'en';
-
-if (typeof (Storage) !== "undefined") {
-
-    var lang = localStorage.getItem("lang");
-    if (lang)
-        currentLanguage = lang;
-    else
-        localStorage.setItem("lang", currentLanguage);
-}
-
 function login() {
     const email = document.getElementById('signin-email').value,
         password = document.getElementById('signin-password').value;
@@ -19,24 +8,25 @@ function login() {
     firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(function (response) {
+        .then(function(response) {
             console.log(response);
 
-            if (typeof (Storage) !== "undefined") {
+            if (typeof(Storage) !== "undefined") {
+                v
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
                 localStorage.setItem("uname", response.username);
             }
             window.location.href = 'market.html';
         })
-        .catch(function (error) {
+        .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignIn: ' + error);
         });
 }
 
 function logout() {
-    if (typeof (Storage) !== "undefined") {
+    if (typeof(Storage) !== "undefined") {
         localStorage.removeItem("uid");
         localStorage.removeItem("email");
         localStorage.removeItem("uname");
@@ -53,10 +43,10 @@ function register() {
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(function (response) {
+        .then(function(response) {
             console.log('response SignUp: ', response);
 
-            if (typeof (Storage) !== "undefined") {
+            if (typeof(Storage) !== "undefined") {
                 var objToken = {
                     uid: response.uid,
                     email: response.email
@@ -69,7 +59,7 @@ function register() {
             createProfile(response.uid, email, username);
 
         })
-        .catch(function (error) {
+        .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
             console.log('error SignUp: ', error);
         });
@@ -116,6 +106,15 @@ function changeGradient() {
     ];
     heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
 }
+
+function changeRadius() {
+    heatmap.set('radius', heatmap.get('radius') ? null : 20);
+}
+
+function changeOpacity() {
+    heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+}
+
 // Heatmap data: 500 Points
 function getPoints() {
     return [
@@ -632,7 +631,7 @@ function createProfile(userid, email, username) {
         var selectedneo = selection.options[selection.selectedIndex].value;
         var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
-        fReader.onloadend = function (event) {
+        fReader.onloadend = function(event) {
             var img = document.getElementById('imgResult');
             img.src = event.target.result;
             var url = img.src.replace('data:image/jpeg;base64', '');
@@ -643,7 +642,7 @@ function createProfile(userid, email, username) {
                 contactno: tel,
                 profilepic: url,
                 username: username
-            }).then(function (response) {
+            }).then(function(response) {
                 window.location.href = 'market.html';
             });
         };
@@ -664,7 +663,7 @@ function uploadImage() {
         console.log("uploadFile.files[0]", uploadFile.files[0].name);
         var fReader = new FileReader();
         fReader.readAsDataURL(uploadFile.files[0]);
-        fReader.onloadend = function (event) {
+        fReader.onloadend = function(event) {
 
             firebase.database().ref('products/' + id).set({
                 id: id,
@@ -673,9 +672,9 @@ function uploadImage() {
                 prodquantity: 5,
                 barterer: 'sam martin',
                 prodimage: url
-            }).then(function (response) {
+            }).then(function(response) {
                 console.log(response);
-            }).catch(function (err) {
+            }).catch(function(err) {
                 console.log(err);
             });
 
@@ -702,17 +701,17 @@ function createProduct() {
         barterid: userID,
         barterer: uname,
         status: 'open'
-    }).then(function (response) {
+    }).then(function(response) {
         $('#addItemModal').modal('hide');
         document.getElementById("product-name").value = document.getElementById("product-desc").value = document.getElementById("product-qty").value = "";
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log(err);
     });
 }
 
 function checkSession() {
 
-    if (typeof (Storage) !== "undefined") {
+    if (typeof(Storage) !== "undefined") {
 
         var userID = localStorage.getItem("uid"),
             username = localStorage.getItem("uname"),
@@ -731,13 +730,13 @@ function barterItem(itemID) {
 
     var database = firebase.database();
     var prod = database.ref('products/' + itemID);
-    prod.on('value', function (snapshot) {
+    prod.on('value', function(snapshot) {
         document.getElementById('pid').innerHTML = snapshot.val().id;
         document.getElementById('pname').innerHTML = snapshot.val().prodname;
         document.getElementById('pqty').innerHTML = snapshot.val().prodquantity;
         var database = firebase.database();
         var prod = database.ref('products/' + itemID);
-        prod.on('value', function (snapshot) {
+        prod.on('value', function(snapshot) {
             document.getElementById('pid').innerHTML = snapshot.val().id;
             document.getElementById('pname').innerHTML = snapshot.val().prodname;
             document.getElementById('pqty').innerHTML = snapshot.val().prodquantity;
@@ -753,7 +752,7 @@ function getProducts() {
     var productRef = firebase.database().ref('products/');
     var userID = localStorage.getItem("uid");
 
-    productRef.on('value', function (snapshot) {
+    productRef.on('value', function(snapshot) {
         var displayTable = "<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
         for (var level1 in snapshot.val()) {
             var dto = snapshot.val()[level1];
@@ -774,12 +773,12 @@ function getProducts() {
 var d = new Date();
 var id = d.getMilliseconds() + d.getSeconds() + d.getHours();
 
-var appendTranslationClass = function () {
+var asd = function() {
     $('#google_translate_element').find('select').addClass('form-control');
     console.log("trigerred")
 }
 
-var removeDefaultText = function () {
+var remove = function() {
     $(".goog-logo-link").empty();
     $('.goog-te-gadget').html($('.goog-te-gadget').children());
 
@@ -787,18 +786,18 @@ var removeDefaultText = function () {
 
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-        pageLanguage: currentLanguage
+        pageLanguage: 'en'
     }, 'google_translate_element');
 
-    appendTranslationClass();
-    removeDefaultText();
+    asd();
+    remove();
 }
 
 function getUserProducts() {
     var database = firebase.database();
     var userprod = firebase.database().ref('products/');
     var select = document.getElementById('ownprod');
-    userprod.on('value', function (snapshot) {
+    userprod.on('value', function(snapshot) {
 
         for (var lvl1 in snapshot.val()) {
             var dto = snapshot.val()[lvl1];
@@ -833,21 +832,21 @@ function createBarter() {
         prodid2: (prods[e.selectedIndex]).id,
     };
 
-    firebase.database().ref('transactions/' + tme).set(objBody).then(function (response) {
-
+    firebase.database().ref('transactions/' + tme).set(objBody).then(function(response) {
+        
 
         firebase.database().ref('products/' + objBody.prodid1).set({
             status: "asd"
-        }).then(function (response1) {
+        }).then(function(response1) {
 
             firebase.database().ref('products/' + objBody.recipient).set({
                 status: "asd"
-            }).then(function (response2) {
-                $('#barterModal').modal('hide');
+            }).then(function(response2) {
+            	$('#barterModal').modal('hide');
             });
         });
 
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log(err);
     });
 }
@@ -860,11 +859,11 @@ function contact() {
         subject: document.getElementById('contact-subject').value,
         message: document.getElementById('contact-message').value,
         email: document.getElementById('contact-email').value
-    }).then(function (response) {
+    }).then(function(response) {
         document.getElementById('error_display').innerHTML = "Query submit,We will get back to you soon :)";
         console.log(response);
         location.reload();
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log(err);
     });
 
