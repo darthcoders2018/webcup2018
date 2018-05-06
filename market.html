@@ -6,50 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>StayAlive | Survivors</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    </head>
+</head>
 
-    <body data-spy="scroll" data-target=".navbar" onload="getProducts();">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="home.html">
-                    <img src="img/anchor-brand.png" alt="anchorbrand">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="market.html">Market</a>
-                        </li>
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-smile fa-2x"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="cart.html">Transactions</a>
-                                <a class="dropdown-item" onclick="logout();">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+<body data-spy="scroll" data-target=".navbar" onload="getProducts();">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.html">
+                <img src="img/anchor-brand.png" alt="anchorbrand">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="market.html">Market</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-smile fa-2x"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="cart.html">Transactions</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#addItemModal">Add item</a>
+                            <a class="dropdown-item" onclick="logout();">Logout</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <!-- breadcrumbs-->
-        </nav>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="home.html">Home</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Market</li>
-            </ol>
-        </nav>
-        <div class="container" id="cont">
-            <!--table-->
-            <!-- <table class="table">
+        </div>
+    </nav>
+    <!-- breadcrumbs-->
+    </nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="home.html">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Market</li>
+        </ol>
+    </nav>
+    <div class="container" id="cont">
+        <!--table-->
+        <!-- <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Seller</th>
@@ -58,7 +59,7 @@
                     </tr>
                 </thead>
                 <tbody> -->
-            <!-- <tr>
+        <!-- <tr>
                         <th scope="row"> <a href="#"data-toggle="modal" data-target="#profileModal">Mark</a></th>
                         <td>fish</td>
                         <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -78,69 +79,118 @@
                                 sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
     
                         </tr> -->
-            <!--   </tbody>
+        <!--   </tbody>
             </table> -->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Shop
-            </button>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <img src="http://via.placeholder.com/140x140" alt="">
-                            </div>
-                            <div class="form-group">
-                                <label for="zip">Name</label>
-                                <p>Mark</p>
-                                <label for="zip">Neo Type</label>
-                                <p>Fisherman</p>
-                            </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Shop
+        </button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <img src="http://via.placeholder.com/140x140" alt="">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Name</label>
+                            <p>Mark</p>
+                            <label for="zip">Neo Type</label>
+                            <p>Fisherman</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="state">State</label>
-                                <img src="http://via.placeholder.com/140x100" alt="">
-                            </div>
-                            <div class="form-group">
-                                <label for="zip">Name</label>
-                                <p>Fish sgxnfmfjfjfjdhxhxj</p>
-                                <label for="zip">Qty</label>
-                                <input type="number" class="form-control" id="zip" placeholder="">
-                            </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="state">State</label>
+                            <img src="http://via.placeholder.com/140x100" alt="">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Name</label>
+                            <p>Fish sgxnfmfjfjfjdhxhxj</p>
+                            <label for="zip">Qty</label>
+                            <input type="number" class="form-control" id="zip" placeholder="">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Add Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="form-frame__reg">
+                            <!-- to be refactored -->
+                            <div class="form">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <div class="input-group">
+                                        <input type="text" id="product-name" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Description</label>
+                                    <div class="input-group">
+                                        <input type="text" id="product-desc" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Quantity</label>
+                                    <div class="input-group">
+                                        <input type="number" id="product-qty" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-btn">
+                                    <button class="btn btn-sm btn-primary btn-block" type="submit" onclick="createProduct();">
+                                        <i class="fa fa-check-circle fa-2x"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+
         <!--- Footer -->
         <footer>
             <div class="container-fluid padding">
@@ -166,6 +216,6 @@
         <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-functions.js"></script>
         <script src="firebase.js"></script>
         <script src="script.js"></script>
-    </body>
+</body>
 
 </html>
