@@ -12,12 +12,10 @@ function login() {
             console.log(response);
 
             if (typeof(Storage) !== "undefined") {
-                var objToken = {
-                    uid: response.uid,
-                    email: response.email
-                }
+                v
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
+                localStorage.setItem("uname", response.username);
             }
             window.location.href = 'market.html';
         })
@@ -31,6 +29,7 @@ function logout() {
     if (typeof(Storage) !== "undefined") {
         localStorage.removeItem("uid");
         localStorage.removeItem("email");
+        localStorage.removeItem("uname");
     }
     window.location.href = 'index.html';
 }
@@ -38,7 +37,8 @@ function logout() {
 function register() {
     document.getElementById('error_display').innerHTML = ' ';
     const email = document.getElementById('register-email').value,
-        password = document.getElementById('register-password1').value;
+        password = document.getElementById('register-password1').value,
+        username = document.getElementById('register-username').value;
 
     firebase
         .auth()
@@ -53,10 +53,11 @@ function register() {
                 }
                 localStorage.setItem("uid", response.uid);
                 localStorage.setItem("email", response.email);
+                localStorage.setItem("uname", username);
             }
 
-            createProfile(response.uid, email);
-            // window.location.href = 'home.html';
+            createProfile(response.uid, email, username);
+          
         })
         .catch(function(error) {
             document.getElementById('error_display').innerHTML = error;
@@ -620,7 +621,7 @@ function getPoints() {
     ];
 }
 
-function createProfile(userid, email) {
+function createProfile(userid, email, username) {
     var uploadFile = document.getElementById('img-upload');
     if (uploadFile.files && uploadFile.files.length > 0) {
         var database = firebase.database();
@@ -639,9 +640,14 @@ function createProfile(userid, email) {
                 userid: userid,
                 neozone: selectedneo,
                 contactno: tel,
-                profilepic: url
-            }).then(function(response) {});
+                profilepic: url,
+                username: username
+            }).then(function(response) {
+            	window.location.href = 'market.html';
+            });
         };
+    } else {
+    	window.location.href = 'market.html';
     }
 }
 
@@ -686,12 +692,14 @@ function createProduct() {
     var dt = new Date();
     var id = dt.getMilliseconds() + dt.getSeconds() + dt.getHours();
     var userID = localStorage.getItem("uid");
+    var uname = localStorage.getItem("uname");
     firebase.database().ref('products/' + id).set({
         id: id,
         prodname: name,
         proddesc: desc,
         prodquantity: qty,
         barterid: userID,
+        barterer: uname, 
         status: 'open'
     }).then(function(response) {
         $('#addItemModal').modal('hide');
@@ -705,6 +713,7 @@ function checkSession() {
     if (typeof(Storage) !== "undefined") {
 
         var userID = localStorage.getItem("uid"),
+        username = localStorage.getItem("uname"),
             email = localStorage.getItem("email");
         if (!userID && !email) {
             window.location.href = 'login.html';
@@ -737,13 +746,13 @@ function barterItem(itemID) {
 
     function getProducts() {
 
-        var displayTable = "<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
+       
         var database = firebase.database();
         var productRef = firebase.database().ref('products/');
         var userID = localStorage.getItem("uid");
 
         productRef.on('value', function(snapshot) {
-
+        	 var displayTable = "<table  class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Product Name</th><th scope='col'>Barterer</th><th scope='col'>ProductID</th><th scope='col'>Product Description</th><th scope='col'>Product Quantity</th></tr> </thead>";
             for (var level1 in snapshot.val()) {
                 var dto = snapshot.val()[level1];
 
@@ -753,6 +762,7 @@ function barterItem(itemID) {
             }
             displayTable += "</table>";
             document.getElementById('cont').innerHTML = displayTable;
+
             //getUserProducts()
         });
 
